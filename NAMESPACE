@@ -1,0 +1,4 @@
+exportPattern("^[[:alpha:]]+")
+importFrom(pracma,"polyfit")
+importFrom(pracma,"polyval")
+export(nomogramEx)
