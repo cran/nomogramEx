@@ -1,5 +1,5 @@
 
-nomogramEx <- function(nomo=nomo,np=2){
+nomogramEx <- function(nomo=nomo,np=2,digit=9){
 
   polyfitN=function(x,y,maxN){
     error <- data.frame(matrix(rep(0,2*maxN),ncol=2))
@@ -28,27 +28,31 @@ nomogramEx <- function(nomo=nomo,np=2){
 
     if(length(temp[[1]])>5){
       points=data.frame(temp$points)
-      x=as.numeric(row.names(points))
+      x=temp[[1]]
       y=points[[1]]
       pfN=polyfitN(x,y,maxN=3)
       if(pfN[1,1]==1){
         beta <- polyfit(x,y,1)
-        beta <- round(beta,4)
-        rst=paste("points =",beta[1],"+",beta[2],"*",names(nomo)[nvi])
+        beta <- round(beta,digit)
+        rst=paste("points =",beta[1],"*",names(nomo)[nvi],"+",
+                  beta[2])
         list0=c(list0,list(rst))
       }
       if(pfN[1,1]==2){
         beta <- polyfit(x,y,2)
-        beta <- round(beta,4)
-        rst=paste("points =",beta[1],"+",beta[2],"*",names(nomo)[nvi],"+",
-                  beta[3],"*",names(nomo)[nvi],"^2")
+        beta <- round(beta,digit)
+        rst=paste("points =",beta[1],"*",names(nomo)[nvi],"^2 +",
+                  beta[2],"*",names(nomo)[nvi],"+",
+                  beta[3])
         list0=c(list0,list(rst))
       }
       if(pfN[1,1]==3){
         beta <- polyfit(x,y,3)
-        beta <- round(beta,4)
-        rst=paste("points =",beta[1],"+",beta[2],"*",names(nomo)[nvi],"+",
-                  beta[3],"*",names(nomo)[nvi],"^2 +",beta[4],"*",names(nomo)[nvi],"^3")
+        beta <- round(beta,digit)
+        rst=paste("points =",beta[1],"*",names(nomo)[nvi],"^3 +",
+                  beta[2],"*",names(nomo)[nvi],"^2 +",
+                  beta[3],"*",names(nomo)[nvi],"+",
+                  beta[4])
         list0=c(list0,list(rst))
       }
     }#if(length(temp[[1]])>5){
@@ -63,22 +67,26 @@ nomogramEx <- function(nomo=nomo,np=2){
     pfN=polyfitN(x,y,maxN=3)
     if(pfN[1,1]==1){
       beta <- polyfit(x,y,1)
-      beta <- round(beta,4)
-      rst=paste(names(nomo)[tnvi],"=",beta[1],"+",beta[2],"* points")
+      beta <- round(beta,digit)
+      rst=paste(names(nomo)[tnvi],"=",beta[1],"* points +",
+                beta[2])
       list0=c(list0,list(rst))
     }
     if(pfN[1,1]==2){
       beta <- polyfit(x,y,2)
-      beta <- round(beta,4)
-      rst=paste(names(nomo)[tnvi],"=",beta[1],"+",beta[2],"* points +",
-                beta[3],"* points ^2")
+      beta <- round(beta,digit)
+      rst=paste(names(nomo)[tnvi],"=",beta[1],"* points ^2 +",
+                beta[2],"* points +",
+                beta[3])
       list0=c(list0,list(rst))
     }
     if(pfN[1,1]==3){
       beta <- polyfit(x,y,3)
-      beta <- round(beta,4)
-      rst=paste(names(nomo)[tnvi],"=",beta[1],"+",beta[2],"* points +",
-                beta[3],"* points ^2 +",beta[4],"* points ^3")
+      beta <- round(beta,digit)
+      rst=paste(names(nomo)[tnvi],"=",beta[1],"* points ^3 +",
+                beta[2],"* points ^2 +",
+                beta[3],"* points +",
+                beta[4])
       list0=c(list0,list(rst))
     }
   }#for(i in (tnv-np+1):tnv){

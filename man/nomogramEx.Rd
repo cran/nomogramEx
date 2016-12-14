@@ -10,11 +10,12 @@ The package, including a function of nomogramEx(),
 }
 \keyword{nomogram, survival probability}
 \usage{
-nomogramEx(nomo,np)
+nomogramEx(nomo,np,digit)
 }
 \arguments{
   \item{nomo}{a object of nomogram()}
-  \item{np}{the number of predicitons in your nomogram, for example: if you predicted 3- and 6- month, np=2}
+  \item{np}{the number of predicitons in your nomogram, for example: if you predicted 3- and 6- month, np=2, default is 2}
+  \item{digit}{the number of decimal digits, default is 9}
 }
 \value{
 \item{list}{the result is a list including polynomial equations to calculate the points of each variable, and the polynomial equations to calculate the probability of points}
@@ -24,6 +25,9 @@ Zhicheng Du<dgdzc@hotmail.com>, Yuantao Hao<haoyt@mail.sysu.edu.cn>
 }
 \note{
 The polynomial equations extracted by this package are equal and less than cubic function.
+Bugs:
+version 1.0: the order of variables in the polynomial equations is opposite.
+version 1.0: the number of the demical digits can not be controled.
 }
 \seealso{
 nothing
@@ -45,7 +49,7 @@ f <- cph(formula(Surv(time,death)~sex+age),x=TRUE,y=TRUE,surv=TRUE,time.inc=3)
 surv <- Survival(f)
 nomo <- nomogram(f, fun=list(function(x) surv(3,x),function(x) surv(6,x)),
   lp=TRUE,funlabel=c("3-Month Survival Prob","6-Month Survival Prob"))
-nomogramEx(nomo=nomo,np=2)
+nomogramEx(nomo=nomo,np=2,digit=9)
 }
 }
 
