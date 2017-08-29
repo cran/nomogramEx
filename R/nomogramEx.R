@@ -14,7 +14,12 @@ nomogramEx <- function(nomo=nomo,np=2,digit=9){
   }
 
   list0=list(RESULT="The equation of each variable as follows:")
-  nv=length(names(nomo))-np-2
+
+  if("lp" %in% names(nomo)){
+    nv=length(names(nomo))-np-2
+  }else{
+    nv=length(names(nomo))-np-1
+  }
 
   for(nvi in 1:nv){
 

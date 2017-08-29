@@ -1,4 +1,8 @@
 exportPattern("^[[:alpha:]]+")
 importFrom(pracma,"polyfit")
 importFrom(pracma,"polyval")
+importFrom(rms,"datadist")
+importFrom(rms,"cph")
+importFrom(rms,"Survival")
+importFrom(rms,"nomogram")
 export(nomogramEx)

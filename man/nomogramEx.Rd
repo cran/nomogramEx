@@ -25,9 +25,12 @@ Zhicheng Du<dgdzc@hotmail.com>, Yuantao Hao<haoyt@mail.sysu.edu.cn>
 }
 \note{
 The polynomial equations extracted by this package are equal and less than cubic function.
-Bugs:
-version 1.0: the order of variables in the polynomial equations is opposite.
-version 1.0: the number of the demical digits can not be controled.
+
+Update:
+
+Version 1.0: 1.the order of variables in the polynomial equations is opposite. 2.the number of the demical digits can not be controled.
+
+Version 2.0: 1.the argument 'lp' from the 'nomogram' function can not be recognized.
 }
 \seealso{
 nothing
